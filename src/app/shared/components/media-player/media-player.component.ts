@@ -13,6 +13,7 @@ export class MediaPlayerComponent implements OnInit {
     album: '',
     name: '',
     url:'',
+    date: '',
     _id: 1
   }
   constructor() { }

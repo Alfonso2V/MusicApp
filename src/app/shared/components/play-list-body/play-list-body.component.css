@@ -19,6 +19,7 @@
     text-transform: uppercase;
     color: var(--color-4);
     opacity: .7;
+    cursor: pointer;
 }
 
 .play-list-rows {
@@ -33,6 +34,12 @@
 .play-list-rows .track-name-opacity {
     opacity: .7;
     font-weight: 300;
+}
+.play-list-rows .track-date-opacity{
+    opacity: .7;
+    font-weight: 300;
+    /* text-align: center; */
+    margin-left:40px;
 }
 
 .cover-section {

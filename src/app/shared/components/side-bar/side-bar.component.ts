@@ -20,12 +20,12 @@ export class SideBarComponent implements OnInit {
       {
         name: 'Home',
         icon: 'uil uil-estate',
-        router: ['/'] //Raiz
+        router: ['/']
       },
       {
         name: 'Buscar',
         icon: 'uil uil-search',
-        router: ['/','history']
+        router: ['/','history'] //localhost/history
       },
       {
         name: 'Tu biblioteca',
