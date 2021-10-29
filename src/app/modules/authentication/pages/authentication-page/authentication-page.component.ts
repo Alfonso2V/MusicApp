@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@modules/authentication/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -12,13 +13,13 @@ export class AuthenticationPageComponent implements OnInit {
   formLogin: FormGroup = new FormGroup({});
   errorSession: boolean = false
 
-  constructor(private _authService: AuthService, private cookie: CookieService) { }
+  constructor(private _authService: AuthService, private cookie: CookieService, private router: Router) { }
 
   ngOnInit(): void {
     this.formLogin = new FormGroup(
       {
         email: new FormControl('', [
-          Validators.required, //validacio para que exista el campo
+          Validators.required, //validacion para que exista el campo
           Validators.email, //VAlidacion para que tenga formao de email
         ]),
         pass: new FormControl('', [
@@ -39,11 +40,11 @@ export class AuthenticationPageComponent implements OnInit {
       .subscribe(responseOK => { /* Cuando se ingresan las credenciales correctas */
         const { tokenSession, data } = responseOK
         this.cookie.set('token', tokenSession, 10, '/')
-        console.log("Correcta");
+        this.router.navigate(['/','tracks']) //Al asiganar cookie enviarlo a la ruta de tracks
       },
         err => { /* Codigos mayores a 400 de que no son correctas las credenciales */
           this.errorSession = true
-          console.log("Usuario", email, pass);
+          console.log("Error de sesion", err)
         })
   }
 }
