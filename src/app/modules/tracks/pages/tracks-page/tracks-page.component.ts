@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
 import { TracksService } from '@modules/tracks/services/tracks.service';
 import { Subscription } from 'rxjs';
-import * as dataRaw from '../../../../data/tracks.json'
 
 @Component({
   selector: 'app-tracks-page',
@@ -19,20 +18,23 @@ export class TracksPageComponent implements OnInit, OnDestroy {
   constructor(private tracksServices: TracksService) { }
 
   ngOnInit(): void {
-    const observer1$ = this.tracksServices.dataTracksTrending$.subscribe(
-      Response => {
-        this.tracksTrending = Response
-      }
-    )
-    const observer2$ = this.tracksServices.dataTracksRandom$.subscribe(
-      Response => {
-        this.tracksRandom = [...this.tracksRandom, ...Response]
-      }
-    )
-    this.listObservers$ = [observer1$, observer2$]
+    this.loadDataAll()
   }
+
+  loadDataAll(): void {
+    this.tracksServices.getAllTracks$()  //Canciones en small
+      .subscribe((Response: TrackModel[]) => {
+        this.tracksTrending = Response
+      })
+
+    this.tracksServices.getAllRandom$() //CAnciones en big
+      .subscribe((Response: TrackModel[]) => {
+        this.tracksRandom = Response
+      })
+  }
+
   ngOnDestroy(): void {
-    this.listObservers$.forEach(u => u.unsubscribe())
+    //No es necesaria la desuscripcion en las suscripciones httpClient, la desuscripcion es automatica
   }
 
 }
