@@ -10,13 +10,17 @@
         <form (ngSubmit)="sendLogin()" [formGroup]="formLogin" class="login-auth-form">
             <div class="form-group">
                 <label for="email">Dirección de correo o nombre de usuario</label>
-                <input formControlName="email" formControlName="email" type="text"
-                    placeholder="Dirección de correo o nombre de usuario" class="form-input">
+                <br>
+                <input formControlName="email" type="text" placeholder="Dirección de correo o nombre de usuario"
+                    class="form-input">
+                <i *ngIf="formLogin.valid" class="uil uil-check"></i>
+                <!-- Aparecer palomita si el formulario es valido -->
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
-                <input formControlName="pass" formControlName="pass" type="password" placeholder="Contraseña"
-                    class="form-input">
+                <br>
+                <input formControlName="pass" type="password" placeholder="Contraseña" class="form-input">
+                <i *ngIf="formLogin.valid" class="uil uil-check"></i>
             </div>
             <div class="form-steps">
                 <a class="link" href="">¿Se te ha olvidado la contraseña?</a>

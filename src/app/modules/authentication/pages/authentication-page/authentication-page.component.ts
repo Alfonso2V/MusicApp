@@ -40,7 +40,7 @@ export class AuthenticationPageComponent implements OnInit {
       .subscribe(responseOK => { /* Cuando se ingresan las credenciales correctas */
         const { tokenSession, data } = responseOK
         this.cookie.set('token', tokenSession, 10, '/')
-        this.router.navigate(['/','tracks']) //Al asiganar cookie enviarlo a la ruta de tracks
+        this.router.navigate(['/', 'tracks']) //Al asiganar cookie enviarlo a la ruta de tracks
       },
         err => { /* Codigos mayores a 400 de que no son correctas las credenciales */
           this.errorSession = true

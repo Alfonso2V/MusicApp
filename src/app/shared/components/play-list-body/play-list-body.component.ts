@@ -13,9 +13,9 @@ export class PlayListBodyComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
-  changeSort(property: string) {
+  changeSort(property: string) : void{
     const { order } = this.optionSort
     this.optionSort = {
       property: property,
