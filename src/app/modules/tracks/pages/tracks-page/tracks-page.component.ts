@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
 import { TracksService } from '@modules/tracks/services/tracks.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tracks-page',
@@ -12,8 +11,6 @@ export class TracksPageComponent implements OnInit, OnDestroy {
 
   tracksTrending: Array<TrackModel> = []
   tracksRandom: Array<TrackModel> = []
-
-  listObservers$: Array<Subscription> = []
 
   constructor(private tracksServices: TracksService) { }
 
@@ -27,7 +24,7 @@ export class TracksPageComponent implements OnInit, OnDestroy {
         this.tracksTrending = Response
       })
 
-    this.tracksServices.getAllRandom$() //CAnciones en big
+    this.tracksServices.getAllRandom$() //Canciones en big
       .subscribe((Response: TrackModel[]) => {
         this.tracksRandom = Response
       })

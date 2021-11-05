@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TrackModel } from '@core/models/tracks.model';
+import { FavoriteService } from '@modules/favorites/services/favorite.service';
 
 @Component({
   selector: 'app-favorite-page',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritePageComponent implements OnInit {
 
-  constructor() { }
+  dataTracks: Array<TrackModel> = []
+
+  constructor(private favoriteSercice: FavoriteService) { }
 
   ngOnInit(): void {
+    this.loadAllData()
+  }
+
+  loadAllData(): void {
+    this.favoriteSercice.getAllTracks$()
+      .subscribe((Response: TrackModel[]) => {
+        this.dataTracks = Response
+      })
   }
 
 }
